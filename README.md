@@ -25,13 +25,13 @@ cp .env.example .env
 Windows
 
 ```shell
-python bot.py
+python botapp.py
 ```
 
 Linux/Mac
 
 ```shell
-python3 bot.py
+python3 botapp.py
 ```
 
 # Set up Postgresql on server
