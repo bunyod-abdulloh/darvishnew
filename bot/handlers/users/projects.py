@@ -4,7 +4,6 @@ from aiogram import Router, F, types
 from bot.handlers.functions.functions_one import extracter
 from bot.keyboards.inline.buttons import key_returner_projects
 from bot.keyboards.reply.interviews_reply import interviews_cbuttons
-from data.jsonfiles.suhbatloyihajson import suhbatloyiha
 from loader import db
 
 interviews_projects = Router()
@@ -25,30 +24,6 @@ async def prev_next_projects_func(extract, call: types.CallbackQuery, current_pa
         )
     except aiogram.exceptions.TelegramBadRequest:
         pass
-
-
-@interviews_projects.message(F.text == "addpr")
-async def add_project_handler(message: types.Message):
-    c = 0
-    for n in suhbatloyiha:
-        c += 1
-        sequence = n['sequence']
-        file_id = n['file_id']
-        file_type = n['file_type']
-        category = n['category']
-        subcategory = n['subcategory']
-        caption = n['caption']
-        await db.add_projects(
-            sequence=sequence,
-            file_id=file_id,
-            file_type=file_type,
-            category=category,
-            subcategory=subcategory,
-            caption=caption
-        )
-    await message.answer(
-        text=f"{c} ta material qo'shildi""'"
-    )
 
 
 @interviews_projects.message(F.text == "🎙 Suhbat va loyihalar")

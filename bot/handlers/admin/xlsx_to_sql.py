@@ -124,7 +124,7 @@ async def add_leoscales_handler(message: types.Message, state: FSMContext):
     await state.set_state(AdminState.leoscales)
 
 
-@router.message(F.document, AdminState.leoquestions)
+@router.message(F.document, AdminState.leoscales)
 async def add_leoscales_state(message: types.Message, state: FSMContext):
     f_path = await download_and_save_file(
         file_id=message.document.file_id, save_path="downloads/"
