@@ -4,8 +4,8 @@ from aiogram import Router, F, types
 from bot.handlers.functions.functions_one import extracter
 from bot.keyboards.inline.buttons import key_returner_projects
 from bot.keyboards.reply.interviews_reply import interviews_cbuttons
+from data.jsonfiles import suhbatloyiha
 from loader import db
-from utils.jsonfiles.suhbatloyihajson import suhbatloyiha
 
 interviews_projects = Router()
 

@@ -3,8 +3,8 @@ from aiogram import Router, F, types
 
 from bot.handlers.functions.functions_one import extracter
 from bot.keyboards.inline.buttons import key_returner_articles
+from data.jsonfiles import articlesjson
 from loader import db
-from utils.jsonfiles.articlesjson import articlesjson
 
 articles = Router()
 
