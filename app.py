@@ -15,12 +15,13 @@ def setup_handlers(dispatcher: Dispatcher) -> None:
     dispatcher.include_router(setup_routers())
 
 
-def setup_middlewares(dispatcher: Dispatcher, bot: Bot) -> None:
+def setup_middlewares(dispatcher: Dispatcher) -> None:
     """MIDDLEWARE"""
     from bot.middlewares import ThrottlingMiddleware
 
     dispatcher.message.middleware(ThrottlingMiddleware(slow_mode_delay=0.5))
-
+    dispatcher.message.middleware(MediaGroupMiddleware())
+    
 
 def setup_filters(dispatcher: Dispatcher) -> None:
     """FILTERS"""
@@ -29,10 +30,10 @@ def setup_filters(dispatcher: Dispatcher) -> None:
     dispatcher.message.filter(ChatPrivateFilter(chat_type=["private"]))
 
 
-async def setup_aiogram(dispatcher: Dispatcher, bot: Bot) -> None:
+async def setup_aiogram(dispatcher: Dispatcher) -> None:
     logger.info("Configuring aiogram")
     setup_handlers(dispatcher=dispatcher)
-    setup_middlewares(dispatcher=dispatcher, bot=bot)
+    setup_middlewares(dispatcher=dispatcher)
     setup_filters(dispatcher=dispatcher)
     logger.info("Configured aiogram")
 
@@ -56,7 +57,7 @@ async def database_connected():
     # await db.create_table_leotemp()
 
 
-async def aiogram_on_startup_polling(dispatcher: Dispatcher, bot: Bot) -> None:
+async def on_startup(dispatcher: Dispatcher, bot: Bot) -> None:
     from utils.set_bot_commands import set_default_commands
     from utils.notify_admins import on_startup_notify
 
@@ -65,12 +66,12 @@ async def aiogram_on_startup_polling(dispatcher: Dispatcher, bot: Bot) -> None:
 
     logger.info("Starting polling")
     await bot.delete_webhook(drop_pending_updates=True)
-    await setup_aiogram(bot=bot, dispatcher=dispatcher)
+    await setup_aiogram(dispatcher=dispatcher)
     await on_startup_notify(bot=bot)
     await set_default_commands(bot=bot)
 
 
-async def aiogram_on_shutdown_polling(dispatcher: Dispatcher, bot: Bot):
+async def on_shutdown(dispatcher: Dispatcher, bot: Bot):
     logger.info("Stopping polling")
     await bot.session.close()
     await dispatcher.storage.close()
@@ -86,14 +87,10 @@ def main():
     storage = MemoryStorage()
     dispatcher = Dispatcher(storage=storage)
 
-    dispatcher.startup.register(aiogram_on_startup_polling)
-    dispatcher.shutdown.register(aiogram_on_shutdown_polling)
-    dispatcher.message.middleware(MediaGroupMiddleware())
+    dispatcher.startup.register(on_startup)
+    dispatcher.shutdown.register(on_shutdown)    
     asyncio.run(dispatcher.start_polling(bot, close_bot_session=True,
                                          allowed_updates=dispatcher.resolve_used_update_types()))
-
-
-# allowed_updates=['message', 'chat_member']
 
 
 if __name__ == "__main__":
