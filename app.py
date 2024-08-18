@@ -42,19 +42,18 @@ async def database_connected():
     pass
     # Ma'lumotlar bazasini yaratamiz:
     await db.create()
-    # await db.drop_table_users()
-    # await db.create_table_projects()
     await db.create_table_users()
     await db.create_table_tables()
-    # await db.create_table_testlaryaxin()
-    # await db.create_table_yaxinscales()
-    # await db.create_table_temporaryyaxin()
-    # await db.create_table_ayztempquestions()
-    # await db.create_table_ayztempscales()
-    # await db.create_table_ayztemptemp()
-    # await db.create_table_leoquestions()
-    # await db.create_table_leoscales()
-    # await db.create_table_leotemp()
+    await db.create_table_projects()
+    await db.create_table_testlaryaxin()
+    await db.create_table_yaxinscales()
+    await db.create_table_temporaryyaxin()
+    await db.create_table_ayztempquestions()
+    await db.create_table_ayztempscales()
+    await db.create_table_ayztemptemp()
+    await db.create_table_leoquestions()
+    await db.create_table_leoscales()
+    await db.create_table_leotemp()
 
 
 async def on_startup(dispatcher: Dispatcher, bot: Bot) -> None:

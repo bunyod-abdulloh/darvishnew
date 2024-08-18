@@ -7,7 +7,7 @@ def setup_routers() -> Router:
     from .users import (start, courses_main_hr, articles_hr, projects, projects_two, testshr, ayzenktemperamenthr,
                         testleongard)
     from .errors import error_handler
-    from .admin import admin_main, admin_users, admin_downloads, xlsx_to_sql, get_ids
+    from .admin import admin_main, admin_users, admin_downloads, xlsx_to_sql, get_ids, admin_add
 
     router = Router()
 
@@ -19,5 +19,5 @@ def setup_routers() -> Router:
                            testleongard.router)
     # Admins
     router.include_routers(admin_main.router, admin_users.router, admin_downloads.router, xlsx_to_sql.router,
-                           get_ids.router)
+                           get_ids.router, admin_add.router)
     return router
