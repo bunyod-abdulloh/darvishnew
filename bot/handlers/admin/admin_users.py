@@ -5,13 +5,13 @@ import asyncpg
 from aiogram import Router, F, types
 from aiogram.fsm.context import FSMContext
 
-from data.config import ADMINS
 from bot.filters import IsBotAdminFilter
-from bot.handlers.admin.docs_to_xls import all_users
 from bot.keyboards.inline.buttons import are_you_sure_markup
 from bot.keyboards.reply.admin_dkb import admin_users_dkb
-from loader import db, bot
 from bot.states import AdminState
+from data.config import ADMINS
+from loader import db, bot
+from utils.jsonfiles.usersjson import users
 
 router = Router()
 
@@ -103,7 +103,7 @@ async def add_json(message: types.Message):
         text="Foydalanuvchilarni qo'shish boshlandi!"
     )
     try:
-        for user in all_users:
+        for user in users:
             c += 1
             await db.add_user_json(
                 full_name=user['full_name'],
@@ -117,6 +117,7 @@ async def add_json(message: types.Message):
             text=f"{c} ta foydalanuvchi qo'shildi"
         )
     except asyncpg.exceptions.UniqueViolationError as err:
-        await message.answer(
-            text=f"{err}"
-        )
+        pass
+        # await message.answer(
+        #     text=f"{err}"
+        # )
