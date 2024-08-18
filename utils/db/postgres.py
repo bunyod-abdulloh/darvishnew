@@ -45,53 +45,53 @@ class Database:
     # ======================= TABLE | USERS =======================
     async def create_table_users(self):
         sql = """
-        CREATE TABLE IF NOT EXISTS users_user (
+        CREATE TABLE IF NOT EXISTS users (
         id SERIAL PRIMARY KEY,
         full_name VARCHAR(255) NOT NULL,
         username varchar(100) NULL,
         telegram_id BIGINT NOT NULL UNIQUE,
         fio VARCHAR(255) NULL,
-        phone VARCHAR(30) NULL
+        phone VARCHAR(30) NULL        
         );
         """
         await self.execute(sql, execute=True)
 
     async def add_user(self, full_name, username, telegram_id):
-        sql = "INSERT INTO users_user (full_name, username, telegram_id) VALUES($1, $2, $3) returning *"
+        sql = "INSERT INTO users (full_name, username, telegram_id) VALUES($1, $2, $3) returning *"
         return await self.execute(sql, full_name, username, telegram_id, fetchrow=True)
 
     async def add_user_json(self, full_name, username, telegram_id, fio, phone):
-        sql = "INSERT INTO users_user (full_name, username, telegram_id, fio, phone) VALUES($1, $2, $3, $4, $5)"
+        sql = "INSERT INTO users (full_name, username, telegram_id, fio, phone) VALUES($1, $2, $3, $4, $5)"
         return await self.execute(sql, full_name, username, telegram_id, fio, phone, fetchrow=True)
 
     async def updateuser_fullname(self, telegram_id, fio):
-        sql = f"UPDATE users_user SET fio='{fio}' WHERE telegram_id='{telegram_id}'"
+        sql = f"UPDATE users SET fio='{fio}' WHERE telegram_id='{telegram_id}'"
         return await self.execute(sql, execute=True)
 
     async def updateuser_phone(self, telegram_id, phone):
-        sql = f"UPDATE users_user SET phone='{phone}' WHERE telegram_id='{telegram_id}'"
+        sql = f"UPDATE users SET phone='{phone}' WHERE telegram_id='{telegram_id}'"
         return await self.execute(sql, execute=True)
 
     async def select_all_users(self):
-        sql = "SELECT * FROM users_user"
+        sql = "SELECT * FROM users"
         return await self.execute(sql, fetch=True)
 
     async def select_user(self, telegram_id):
-        sql = f"SELECT * FROM users_user WHERE telegram_id='{telegram_id}'"
+        sql = f"SELECT * FROM users WHERE telegram_id='{telegram_id}'"
         return await self.execute(sql, fetchrow=True)
 
     async def count_users(self):
-        sql = "SELECT COUNT(*) FROM users_user"
+        sql = "SELECT COUNT(*) FROM users"
         return await self.execute(sql, fetchval=True)
 
     async def delete_users(self):
-        await self.execute("DELETE FROM users_user WHERE TRUE", execute=True)
+        await self.execute("DELETE FROM users WHERE TRUE", execute=True)
 
     async def delete_user(self, telegram_id):
-        await self.execute(f"DELETE FROM users_user WHERE telegram_id='{telegram_id}'", execute=True)
+        await self.execute(f"DELETE FROM users WHERE telegram_id='{telegram_id}'", execute=True)
 
-    async def drop_users(self):
-        await self.execute("DROP TABLE users_user", execute=True)
+    async def drop_table_users(self):
+        await self.execute("DROP TABLE users", execute=True)
 
     # ======================= TABLE | TABLES =======================
     async def create_table_tables(self):
@@ -258,6 +258,7 @@ class Database:
         sql = """
         CREATE TABLE IF NOT EXISTS temporaryyaxin (
         id SERIAL PRIMARY KEY,
+        created_at DATE DEFAULT CURRENT_DATE,        
         fullname VARCHAR(255) NULL,
         phone VARCHAR(30) NULL,
         telegram_id BIGINT NOT NULL,
@@ -374,7 +375,8 @@ class Database:
     # ======================= TABLE | AYZENK_TEMP =======================
     async def create_table_ayztemptemp(self):
         sql = """
-        CREATE TABLE IF NOT EXISTS ayztemptemp (  
+        CREATE TABLE IF NOT EXISTS ayztemptemp (
+        created_at DATE DEFAULT CURRENT_DATE,  
         telegram_id BIGINT NOT NULL,              
         scale_type VARCHAR(50) NULL,
         question_number INTEGER NULL,       
@@ -457,7 +459,8 @@ class Database:
     # ======================= TABLE | LEONGARD_TEMPORARY =======================
     async def create_table_leotemp(self):
         sql = """
-        CREATE TABLE IF NOT EXISTS leotemp (  
+        CREATE TABLE IF NOT EXISTS leotemp (
+        created_at DATE DEFAULT CURRENT_DATE,  
         telegram_id BIGINT NOT NULL,              
         scale_type VARCHAR(50) NULL,
         question_number INTEGER NULL,       

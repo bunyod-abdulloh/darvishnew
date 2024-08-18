@@ -42,8 +42,8 @@ async def database_connected():
     pass
     # Ma'lumotlar bazasini yaratamiz:
     await db.create()
-    # await db.drop_users()
-    await db.create_table_projects()
+    # await db.drop_table_users()
+    # await db.create_table_projects()
     await db.create_table_users()
     await db.create_table_tables()
     # await db.create_table_testlaryaxin()
