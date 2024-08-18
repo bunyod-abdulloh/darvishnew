@@ -173,7 +173,7 @@ async def add_ayzquestion_state(message: types.Message, state: FSMContext):
     os.remove(f_path)
 
 
-@router.message(F.message == "ayzscales")
+@router.message(F.text == "ayzscales")
 async def add_ayzscales_handler(message: types.Message, state: FSMContext):
     await message.answer(
         text="Test qo'shish uchun Excel faylni yuboring"
