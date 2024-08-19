@@ -1,10 +1,13 @@
+import os
+
+import aiogram
 from aiogram import Router, F, types
 from aiogram.fsm.context import FSMContext
 
 from bot.keyboards.inline.testskb import test_ibuttons, start_test
 from bot.keyboards.reply.tests_dkb import tests_main_dkb
-from loader import db
 from bot.states.userstates import UserAnketa
+from loader import db
 
 test = Router()
 
@@ -146,42 +149,65 @@ async def test_callback(call: types.CallbackQuery):
         text = str()
 
         if any(number < -1.28 for number in result):
-            text += "Сизда невротик ҳолат мавжуд!"
+            text += "Невротик ҳолат мавжуд!"
         else:
-            text += "Сизда невротик ҳолат мавжуд эмас!"
+            text += "Невротик ҳолат мавжуд эмас!"
         user = await db.select_user(
             telegram_id=telegram_id
         )
-        await call.message.edit_text(
-            text=f"<b>Сўровнома якунланди!\n\n"
-                 f"Тест тури: Яхин, Менделевич | Невротик ҳолатни аниқлаш\n\n"
-                 f"Ф.И.О: {user['fio']}\n\n"
-                 f"Телефон рақам: {user['phone']}\n\n"
-                 f"Сизнинг натижаларингиз:\n\n</b>"
-                 f"Xавотир мезони: {xavotir}\n\n"
-                 f"Невротик-депрессия мезони: {nevrotik_depressiya}\n\n"
-                 f"Астения мезони: {asteniya}\n\n"
-                 f"Истерик тоифадаги жавоб мезони: {isterik}\n\n"
-                 f"Обсессив-фобик бузилишлар мезони: {obsessivfobik}\n\n"
-                 f"Вегетатив бузилишлар мезони: {vegetativ}"
-                 f"\n\n<b>{text}</b>"
-                 f"\n\nМезонлардаги кўрсаткичлар + 1.28 дан юқори бўлса соғломлик даражасини, - 1.28 дан паст бўлса "
-                 f"невротик ҳолат борлигидан далолат беради. Иккисини ўртасидаги кўрсаткич эса нотурғун психик "
-                 f"мослашувчанликни билдиради."
-                 f"\n\n<b><i>Консультация учун:\n\n@Hidaya_Med_Clinic_administrator"
-                 f"\n\n+998339513444</i></b>"
+        photo = f"Тест тури: Яхин, Менделевич | Невротик ҳолатни аниқлаш\n\n" \
+                f"Ф.И.О: {user['fio']}\n\n" \
+                f"Телефон рақам: {user['phone']}\n\n" \
+                f"Xавотир мезони: {xavotir}\n\n" \
+                f"Невротик-депрессия мезони: {nevrotik_depressiya}\n\n" \
+                f"Астения мезони: {asteniya}\n\n" \
+                f"Истерик тоифадаги жавоб мезони: {isterik}\n\n" \
+                f"Обсессив-фобик бузилишлар мезони: {obsessivfobik}\n\n" \
+                f"Вегетатив бузилишлар мезони: {vegetativ}\n\n{text}"
+
+        import matplotlib.pyplot as plt
+
+        plt.figure(figsize=(10, 5))
+
+        # Matnni joylashtirish
+        plt.text(0, 1, photo, fontsize=12, ha='left', va='top', transform=plt.gca().transAxes)
+
+        # O'qlarni o'chirib qo'yamiz
+        plt.axis('off')
+        photo_link = f"{telegram_id}.png"
+        # Rasmni saqlaymiz
+        plt.savefig(photo_link, bbox_inches='tight', dpi=300)
+
+        # Rasmni ko'rsatish
+        plt.show()
+        await call.message.delete()
+        sent_message = await call.message.answer_photo(
+            photo=types.input_file.FSInputFile(photo_link),
+            caption=f"<b>Сўровнома якунланди!\n\n</b>"
+                    f"Натижангиз кўрсаткичларини юқоридаги расмдан юклаб олишингиз мумкин!\n\n"
+                    f"Мезонлардаги кўрсаткичлар + 1.28 дан юқори бўлса соғломлик даражасини, - 1.28 дан паст бўлса "
+                    f"невротик ҳолат борлигидан далолат беради. Иккисини ўртасидаги кўрсаткич эса нотурғун психик "
+                    f"мослашувчанликни билдиради.\n\n"
+                    f"<b><i>Консультация учун:\n\n@Hidaya_Med_Clinic_administrator\n\n"
+                    f"+998339513444</i></b>"
         )
+        file_id = sent_message.photo[-1].file_id
+
         await db.delete_user_yaxintemporary(
             telegram_id=telegram_id
         )
+        os.remove(photo_link)
     else:
-        await call.message.edit_text(
-            text=f"{all_questions[question_number]['id']} / {len(all_questions)}"
-                 f"\n\n{all_questions[question_number]['question']}",
-            reply_markup=test_ibuttons(
-                testdb=all_questions[question_number]
+        try:
+            await call.message.edit_text(
+                text=f"{all_questions[question_number]['id']} / {len(all_questions)}"
+                     f"\n\n{all_questions[question_number]['question']}",
+                reply_markup=test_ibuttons(
+                    testdb=all_questions[question_number]
+                )
             )
-        )
+        except aiogram.exceptions.TelegramBadRequest:
+            pass
 
 
 @test.callback_query(F.data.startswith("yaxinback:"))

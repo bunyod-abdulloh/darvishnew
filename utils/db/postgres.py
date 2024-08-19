@@ -51,7 +51,7 @@ class Database:
         username varchar(100) NULL,
         telegram_id BIGINT NOT NULL UNIQUE,
         fio VARCHAR(255) NULL,
-        phone VARCHAR(30) NULL        
+        phone VARCHAR(30) NULL                
         );
         """
         await self.execute(sql, execute=True)
@@ -500,3 +500,20 @@ class Database:
     async def back_leotemp(self, telegram_id, question_number):
         await self.execute(f"DELETE FROM leotemp WHERE telegram_id='{telegram_id}' "
                            f"AND question_number='{question_number}'", execute=True)
+
+    async def create_table_results(self):
+        sql = """
+        CREATE TABLE IF NOT EXISTS results (
+        id SERIAL PRIMARY KEY,        
+        username VARCHAR(100) NULL,
+        fullname VARCHAR(255) NOT NULL,
+        telegram_id BIGINT NOT NULL UNIQUE,
+        test_type VARCHAR(200) NOT NULL,
+        file_id VARCHAR(200) NOT NULL                
+        );
+        """
+        await self.execute(sql, execute=True)
+
+    async def add_result(self, username, fullname, telegram_id, test_type, file_id):
+        sql = "INSERT INTO results (username, fullname, telegram_id, test_type, file_id) VALUES($1, $2, $3, $4, $5)"
+        return await self.execute(sql, username, fullname, telegram_id, test_type, file_id, fetchrow=True)

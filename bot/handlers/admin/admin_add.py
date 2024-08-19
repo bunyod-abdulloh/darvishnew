@@ -65,8 +65,3 @@ async def add_articles_handler(message: types.Message):
     await message.answer(
         text=f"{c} ta maqola qo'shildi"
     )
-
-
-@router.message(F.text == "yaxinquestions")
-async def addyaxinquestions_handler(message: types.Message):
-    pass
