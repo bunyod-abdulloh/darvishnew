@@ -9,6 +9,7 @@ DB_USER = env.str("DB_USER")
 DB_PASS = env.str("DB_PASS")
 DB_NAME = env.str("DB_NAME")
 DB_HOST = env.str("DB_HOST")
+A_HOSTS = env.str("A_HOSTS")
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -22,7 +23,7 @@ SECRET_KEY = 'django-insecure-t)i)83yu4lei08dp=apx(@=6lto_zykejtfxg=fgu_pl&2grc+
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [A_HOSTS]
 
 # Application definition
 

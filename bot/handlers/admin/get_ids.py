@@ -46,10 +46,15 @@ async def get_audio_id(message: types.Message):
     audio_id = message.audio.file_id
     caption = message.caption
     await db.add_projects(
-        sequence=1, audio_id=audio_id, category="category", subcategory="subcategory", caption=caption
+        category="category",
+        subcategory="subcategory",
+        sequence=1,
+        file_type='audio',
+        file_id=audio_id,
+        caption=caption
     )
     await message.answer(
-        text=f"Audio ID: <code>{audio_id}</code>"
+        text=f"Audio databasega joylandi!"
     )
 
 

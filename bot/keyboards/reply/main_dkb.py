@@ -7,7 +7,8 @@ main_dkb = ReplyKeyboardMarkup(
             KeyboardButton(text="🧑‍💻 Testlar | So'rovnomalar")
         ],
         [
-            KeyboardButton(text="📚 Kurslar")
+            KeyboardButton(text="📚 Kurslar"),
+            KeyboardButton(text="🎙 Suhbat va loyihalar")
         ],
         [
             KeyboardButton(text="📝 Maqolalar")
@@ -17,4 +18,3 @@ main_dkb = ReplyKeyboardMarkup(
     input_field_placeholder="Habaringizni kiriting...",
     one_time_keyboard=True
 )
-# KeyboardButton(text="🎙 Suhbat va loyihalar")
