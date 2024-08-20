@@ -508,7 +508,7 @@ class Database:
         username VARCHAR(100) NULL,
         fullname VARCHAR(255) NOT NULL,
         telegram_id BIGINT NOT NULL UNIQUE,
-        test_type VARCHAR(200) NOT NULL,
+        test_type VARCHAR(100) NOT NULL,
         file_id VARCHAR(200) NOT NULL                
         );
         """

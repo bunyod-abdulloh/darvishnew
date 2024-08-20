@@ -1,5 +1,6 @@
-from environs import Env
 from pathlib import Path
+
+from environs import Env
 
 env = Env()
 env.read_env()
@@ -34,6 +35,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'kurslar',
     'medialar',
+    'bemorlar',
 ]
 
 MIDDLEWARE = [
