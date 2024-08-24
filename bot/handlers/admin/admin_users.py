@@ -60,7 +60,7 @@ async def send_ad_to_users(call: types.CallbackQuery, state: FSMContext):
         users = await db.select_all_users()
         count = 0
         for user in users:
-            user_id = user[-1]
+            user_id = user[3]
             try:
                 await bot.send_message(
                     chat_id=user_id,

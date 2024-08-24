@@ -35,7 +35,6 @@ async def handle_albums(message: types.Message, album: types.List[types.Message]
 @router.message(IsBotAdminFilter(ADMINS), F.photo)
 async def get_photo_id(message: types.Message):
     photo_id = message.photo[-1].file_id
-    caption = message.caption
     await message.answer(
         text=f"Photo ID: <code>{photo_id}</code>"
     )
