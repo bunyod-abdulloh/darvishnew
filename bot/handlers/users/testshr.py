@@ -174,15 +174,14 @@ async def test_callback(call: types.CallbackQuery):
 
         # O'qlarni o'chirib qo'yamiz
         plt.axis('off')
-        photo_link = f"{telegram_id}.png"
         # Rasmni saqlaymiz
-        plt.savefig(photo_link, bbox_inches='tight', dpi=300)
+        plt.savefig(f"{telegram_id}.png", bbox_inches='tight', dpi=300)
 
         # Rasmni ko'rsatish
         plt.show()
         await call.message.delete()
-        sent_message = await call.message.answer_photo(
-            photo=types.input_file.FSInputFile(photo_link),
+        await call.message.answer_photo(
+            photo=types.input_file.FSInputFile(f"{telegram_id}.png"),
             caption=f"<b>Сўровнома якунланди!\n\n</b>"
                     f"Натижангиз кўрсаткичларини юқоридаги расмдан юклаб олишингиз мумкин!\n\n"
                     f"Мезонлардаги кўрсаткичлар + 1.28 дан юқори бўлса соғломлик даражасини, - 1.28 дан паст бўлса "
@@ -191,12 +190,11 @@ async def test_callback(call: types.CallbackQuery):
                     f"<b><i>Консультация учун:\n\n@Hidaya_Med_Clinic_administrator\n\n"
                     f"+998339513444</i></b>"
         )
-        file_id = sent_message.photo[-1].file_id
 
         await db.delete_user_yaxintemporary(
             telegram_id=telegram_id
         )
-        os.remove(photo_link)
+        os.remove(f"{telegram_id}.png")
     else:
         try:
             await call.message.edit_text(
