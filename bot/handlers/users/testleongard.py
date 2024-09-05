@@ -85,7 +85,7 @@ async def leo_result(call: types.CallbackQuery):
     )
     await call.message.edit_text(
         text=f"Сўровнома якунланди!\n\n"
-             f"Тест тури: Леонгард | Характерологик сўровнома"
+             f"Тест тури: Леонгард | Характерологик сўровнома\n\n"
              f"Ф.И.О: {user['fio']}\n\n"
              f"Телефон рақам: {user['phone']}\n\n"
              f"1. Намойишкор(истероид) тоифа: {isteroid_all} балл\n"
