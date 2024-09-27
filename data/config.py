@@ -3,7 +3,6 @@ from environs import Env
 env = Env()
 env.read_env()
 
-# TEST_GROUP = env.str("TEST_GROUP")
 BOT_TOKEN = env.str("BOT_TOKEN")
 BIG_ADMIN = env.str("BIG_ADMIN")
 ADMINS = env.list("ADMINS")
