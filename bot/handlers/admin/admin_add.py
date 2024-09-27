@@ -20,6 +20,9 @@ async def add_user_handler(message: types.Message):
     try:
         for user in users:
             c += 1
+            await message.answer(
+                text=f"Foydalanuvchi: {user['full_name']}, ID: {user['telegram_id']}"
+            )
             await db.add_user_json(
                 full_name=user['full_name'],
                 username=user['username'],
