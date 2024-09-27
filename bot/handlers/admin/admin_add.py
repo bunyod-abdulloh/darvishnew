@@ -33,6 +33,10 @@ async def add_user_handler(message: types.Message):
         )
     except asyncpg.exceptions.UniqueViolationError:
         pass
+    except Exception as e:
+        await message.answer(
+            text=f"Xatolik: {e}"
+        )
 
 
 @router.message(F.text == "addprojects")
