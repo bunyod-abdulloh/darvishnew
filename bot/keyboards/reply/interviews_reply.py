@@ -1,4 +1,4 @@
-from aiogram.types import ReplyKeyboardMarkup, KeyboardButton, WebAppInfo
+from aiogram.types import ReplyKeyboardMarkup, KeyboardButton
 
 interviews_cbuttons = ReplyKeyboardMarkup(
     keyboard=[
@@ -6,10 +6,7 @@ interviews_cbuttons = ReplyKeyboardMarkup(
             KeyboardButton(text="🎙 Suhbat va loyihalar")
         ],
         [
-            KeyboardButton(text="🏡 Bosh sahifa"),
-            KeyboardButton(text="📲 Adminga murojaat", web_app=WebAppInfo(
-                url="https://t.me/Hidaya_academy_administrator"
-            ))
+            KeyboardButton(text="🏡 Bosh sahifa")
         ]
     ],
     resize_keyboard=True,
