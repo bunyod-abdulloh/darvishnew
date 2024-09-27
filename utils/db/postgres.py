@@ -127,6 +127,21 @@ class Database:
     async def drop_table_tables(self):
         await self.execute(f"DROP TABLE medialar_tables", execute=True)
 
+    # ======================= TABLE | ARTICLES =======================
+    async def create_table_articles(self):
+        sql = """
+        CREATE TABLE IF NOT EXISTS articles (
+        id SERIAL PRIMARY KEY NOT NULL,
+        file_name VARCHAR(150) NULL,
+        link VARCHAR(150) NULL        
+        );
+        """
+        await self.execute(sql, execute=True)
+
+    async def add_articles(self, file_name, link):
+        sql = "INSERT INTO articles (file_name, link) VALUES($1, $2)"
+        return await self.execute(sql, file_name, link, fetchrow=True)
+
     # ======================= TABLE | MEDIA =======================
     async def create_table_projects(self):
         sql = """
@@ -189,12 +204,6 @@ class Database:
 
     async def drop_table_media(self, table_name):
         await self.execute(f"DROP TABLE {table_name}", execute=True)
-
-    # ARTICLES
-
-    async def add_articles(self, file_name, link):
-        sql = "INSERT INTO medialar_table10 (file_name, link) VALUES($1, $2)"
-        return await self.execute(sql, file_name, link, fetchrow=True)
 
     # ================== TESTLAR | YAXIN =================================
     async def create_table_testlaryaxin(self):
