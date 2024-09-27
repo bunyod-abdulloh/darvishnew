@@ -3,7 +3,6 @@ from aiogram.types import ReplyKeyboardMarkup, KeyboardButton
 admin_main_dkb = ReplyKeyboardMarkup(
     keyboard=[
         [
-            KeyboardButton(text="Web adminka"),
             KeyboardButton(text="Foydalanuvchilar bo'limi")
         ],
         [
