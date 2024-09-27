@@ -4,7 +4,7 @@ import asyncpg
 from aiogram import Router, types, F
 
 from data.jsonfiles.articlesjson import articlesjs
-from data.jsonfiles.suhbatloyihajson import suhbatloyiha
+from data.jsonfiles.suhbatloyihajson import suhbats
 from data.jsonfiles.usersjson import users
 from loader import db
 
@@ -42,7 +42,7 @@ async def add_user_handler(message: types.Message):
 @router.message(F.text == "addprojects")
 async def add_projects_handler(message: types.Message):
     c = 0
-    for project in suhbatloyiha:
+    for project in suhbats:
         c += 1
         await db.add_projects(
             category=project['category'],
