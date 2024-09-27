@@ -3,7 +3,7 @@ import asyncio
 import asyncpg
 from aiogram import Router, types, F
 
-from data.jsonfiles.articlesjson import articlesjson
+from data.jsonfiles.articlesjson import articlesjs
 from data.jsonfiles.suhbatloyihajson import suhbatloyiha
 from data.jsonfiles.usersjson import users
 from loader import db
@@ -60,7 +60,7 @@ async def add_projects_handler(message: types.Message):
 @router.message(F.text == "addarticles")
 async def add_articles_handler(message: types.Message):
     c = 0
-    for article in articlesjson:
+    for article in articlesjs:
         c += 1
         await db.add_articles(
             file_name=article['file_name'],

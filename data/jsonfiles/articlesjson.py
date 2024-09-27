@@ -1,4 +1,4 @@
-articlesjson = [
+articlesjs = [
     {
         "file_name": "Bolaning IQsini qanday oshirish mumkin?",
         "link": "https://t.me/Psixoterapevtuz/7"
