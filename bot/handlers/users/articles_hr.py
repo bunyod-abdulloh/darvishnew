@@ -3,7 +3,6 @@ from aiogram import Router, F, types
 
 from bot.handlers.functions.functions_one import extracter
 from bot.keyboards.inline.buttons import key_returner_articles
-from data.jsonfiles import articlesjson
 from loader import db
 
 articles = Router()
@@ -100,18 +99,4 @@ async def articles_hr_next(call: types.CallbackQuery):
     extracted_articles = extract[current_page - 1]
     await prev_next_articles_func(
         extracted_articles=extracted_articles, call=call, current_page=current_page, all_pages=all_pages
-    )
-
-
-@articles.message(F.text == "addarticles")
-async def add_articles_handler(message: types.Message):
-    c = 0
-    for n in articlesjson:
-        c += 1
-        await db.add_articles(
-            file_name=n['file_name'],
-            link=n['link']
-        )
-    await message.answer(
-        text=f"{c} ta maqola qo'shildi"
     )
