@@ -142,6 +142,10 @@ class Database:
         sql = "INSERT INTO articles (file_name, link) VALUES($1, $2)"
         return await self.execute(sql, file_name, link, fetchrow=True)
 
+    async def select_all_articles(self):
+        sql = f"SELECT * FROM articles ORDER BY id"
+        return await self.execute(sql, fetch=True)
+
     # ======================= TABLE | MEDIA =======================
     async def create_table_projects(self):
         sql = """
@@ -192,10 +196,6 @@ class Database:
 
     async def select_project_by_categories(self, category_name):
         sql = f"SELECT * FROM medialar_table9 WHERE category='{category_name}' ORDER BY sequence ASC"
-        return await self.execute(sql, fetch=True)
-
-    async def select_all_articles(self):
-        sql = f"SELECT * FROM medialar_table10 ORDER BY id"
         return await self.execute(sql, fetch=True)
 
     async def db_get_media_by_id(self, table_name, lesson_number):
