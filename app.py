@@ -53,6 +53,7 @@ async def database_connected():
     await db.create_table_leoquestions()
     await db.create_table_leoscales()
     await db.create_table_leotemp()
+    await db.create_table_articles()
 
 
 async def on_startup(dispatcher: Dispatcher, bot: Bot) -> None:
