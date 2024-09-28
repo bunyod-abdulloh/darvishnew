@@ -31,10 +31,6 @@ admin_users_dkb = ReplyKeyboardMarkup(
 admin_download_dkb = ReplyKeyboardMarkup(
     keyboard=[
         [
-            KeyboardButton(text="Kurslar"),
-            KeyboardButton(text="Dars va kurslar jadvali")
-        ],
-        [
             KeyboardButton(text="Maqolalar"),
             KeyboardButton(text="Suhbat va loyihalar")
         ],

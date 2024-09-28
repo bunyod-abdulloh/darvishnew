@@ -93,40 +93,6 @@ class Database:
     async def drop_table_users(self):
         await self.execute("DROP TABLE users", execute=True)
 
-    # ======================= TABLE | TABLES =======================
-    async def create_table_tables(self):
-        sql = """
-        CREATE TABLE IF NOT EXISTS medialar_tables (
-        table_number INTEGER PRIMARY KEY NOT NULL,
-        channel_id VARCHAR(50) NULL,
-        comment TEXT NULL,
-        files BOOLEAN DEFAULT FALSE
-        );
-        """
-        await self.execute(sql, execute=True)
-
-    async def select_all_tables(self, table_type):
-        sql = f"SELECT * FROM medialar_tables WHERE table_type='{table_type}' ORDER BY table_number ASC"
-        return await self.execute(sql, fetch=True)
-
-    async def select_table_tables(self):
-        sql = "SELECT * FROM medialar_tables"
-        return await self.execute(sql, fetch=True)
-
-    async def get_channel_id(self, table_number):
-        sql = f"SELECT channel_id FROM medialar_tables WHERE table_number='{table_number}'"
-        return await self.execute(sql, fetchrow=True)
-
-    async def select_media_by_id(self, table_number):
-        sql = f"SELECT * FROM medialar_tables WHERE table_number='{table_number}'"
-        return await self.execute(sql, fetchrow=True)
-
-    async def delete_table_tables(self, table_number):
-        await self.execute(f"DELETE FROM medialar_tables WHERE table_number='{table_number}'", execute=True)
-
-    async def drop_table_tables(self):
-        await self.execute(f"DROP TABLE medialar_tables", execute=True)
-
     # ======================= TABLE | ARTICLES =======================
     async def create_table_articles(self):
         sql = """
@@ -146,7 +112,7 @@ class Database:
         sql = f"SELECT * FROM articles ORDER BY id"
         return await self.execute(sql, fetch=True)
 
-    # ======================= TABLE | MEDIA =======================
+    # ======================= TABLE | SUHBAT VA LOYIHALAR =======================
     async def create_table_projects(self):
         sql = """
         CREATE TABLE IF NOT EXISTS medialar_table9 (
@@ -166,10 +132,6 @@ class Database:
         sql = ("INSERT INTO medialar_table9 (sequence, file_id, file_type, category, subcategory, caption) "
                "VALUES($1, $2, $3, $4, $5, $6)")
         return await self.execute(sql, sequence, file_id, file_type, category, subcategory, caption, fetchrow=True)
-
-    async def select_all_media(self, table_name):
-        sql = f"SELECT * FROM {table_name} ORDER BY lesson_number"
-        return await self.execute(sql, fetch=True)
 
     async def select_all_projects(self):
         sql = "SELECT * FROM medialar_table9"
@@ -197,13 +159,6 @@ class Database:
     async def select_project_by_categories(self, category_name):
         sql = f"SELECT * FROM medialar_table9 WHERE category='{category_name}' ORDER BY sequence ASC"
         return await self.execute(sql, fetch=True)
-
-    async def db_get_media_by_id(self, table_name, lesson_number):
-        sql = f"SELECT * FROM {table_name} WHERE lesson_number='{lesson_number}'"
-        return await self.execute(sql, fetchrow=True)
-
-    async def drop_table_media(self, table_name):
-        await self.execute(f"DROP TABLE {table_name}", execute=True)
 
     # ================== TESTLAR | YAXIN =================================
     async def create_table_testlaryaxin(self):
@@ -296,11 +251,6 @@ class Database:
         sql = (f"SELECT ROUND(SUM(answer), 2)  FROM temporaryyaxin WHERE telegram_id='{telegram_id}' "
                f"AND scale_type='{scale_type}'")
         return await self.execute(sql, fetchval=True)
-
-    # async def get_answers_temporary(self, telegram_id, scale_type):
-    #     sql = (f"SELECT * FROM temporaryyaxin WHERE telegram_id='{telegram_id}' "
-    #            f"AND scale_type='{scale_type}'")
-    #     return await self.execute(sql, fetch=True)
 
     async def back_user_yaxintemporary(self, telegram_id, question_number):
         await self.execute(f"DELETE FROM temporaryyaxin WHERE telegram_id='{telegram_id}' "
@@ -510,19 +460,19 @@ class Database:
         await self.execute(f"DELETE FROM leotemp WHERE telegram_id='{telegram_id}' "
                            f"AND question_number='{question_number}'", execute=True)
 
-    async def create_table_results(self):
-        sql = """
-        CREATE TABLE IF NOT EXISTS results (
-        id SERIAL PRIMARY KEY,        
-        username VARCHAR(100) NULL,
-        fullname VARCHAR(255) NOT NULL,
-        telegram_id BIGINT NOT NULL UNIQUE,
-        test_type VARCHAR(100) NOT NULL,
-        file_id VARCHAR(200) NOT NULL                
-        );
-        """
-        await self.execute(sql, execute=True)
-
-    async def add_result(self, username, fullname, telegram_id, test_type, file_id):
-        sql = "INSERT INTO results (username, fullname, telegram_id, test_type, file_id) VALUES($1, $2, $3, $4, $5)"
-        return await self.execute(sql, username, fullname, telegram_id, test_type, file_id, fetchrow=True)
+    # async def create_table_results(self):
+    #     sql = """
+    #     CREATE TABLE IF NOT EXISTS results (
+    #     id SERIAL PRIMARY KEY,
+    #     username VARCHAR(100) NULL,
+    #     fullname VARCHAR(255) NOT NULL,
+    #     telegram_id BIGINT NOT NULL UNIQUE,
+    #     test_type VARCHAR(100) NOT NULL,
+    #     file_id VARCHAR(200) NOT NULL
+    #     );
+    #     """
+    #     await self.execute(sql, execute=True)
+    #
+    # async def add_result(self, username, fullname, telegram_id, test_type, file_id):
+    #     sql = "INSERT INTO results (username, fullname, telegram_id, test_type, file_id) VALUES($1, $2, $3, $4, $5)"
+    #     return await self.execute(sql, username, fullname, telegram_id, test_type, file_id, fetchrow=True)
