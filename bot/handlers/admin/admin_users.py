@@ -1,5 +1,4 @@
 import asyncio
-import logging
 
 from aiogram import Router, F, types
 from aiogram.fsm.context import FSMContext
@@ -81,7 +80,7 @@ async def send_ad_to_users(call: types.CallbackQuery, state: FSMContext):
                 await db.delete_leotemp(
                     telegram_id=user_id
                 )
-                logging.info(f"Ad did not send to user: {user_id}. Error: {error}")
+                pass
         await call.message.answer(
             text=f"Habar {count} ta foydalanuvchiga muvaffaqiyatli yuborildi."
         )
