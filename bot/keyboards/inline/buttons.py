@@ -147,10 +147,10 @@ def interviews_first_ibuttons(items, current_page, all_pages, selected):
             callback_data=f"next_pts:{current_page}:{items[0]['id']}"
         )
     )
-    builder.row(
-        InlineKeyboardButton(
-            text="📖 Mundarija",
-            callback_data=f"content_projects:{current_page}:{items[0]['id']}"
-        )
-    )
+    # builder.row(
+    #     InlineKeyboardButton(
+    #         text="📖 Mundarija",
+    #         callback_data=f"content_projects:{current_page}:{items[0]['id']}"
+    #     )
+    # )
     return builder.as_markup()
