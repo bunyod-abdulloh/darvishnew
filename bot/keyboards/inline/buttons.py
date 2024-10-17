@@ -1,5 +1,4 @@
 from aiogram.types import InlineKeyboardMarkup, InlineKeyboardButton
-from aiogram.types.web_app_info import WebAppInfo
 from aiogram.utils.keyboard import InlineKeyboardBuilder
 
 inline_keyboard = [[
@@ -116,7 +115,7 @@ def key_returner_projects(items, current_page, all_pages):
     return keys.as_markup()
 
 
-def interviews_first_ibuttons(items, current_page, all_pages, selected, content_url=None):
+def interviews_first_ibuttons(items, current_page, all_pages, selected):
     builder = InlineKeyboardBuilder()
     for item in items:
         if selected == item['sequence']:
@@ -151,7 +150,7 @@ def interviews_first_ibuttons(items, current_page, all_pages, selected, content_
     builder.row(
         InlineKeyboardButton(
             text="📖 Mundarija",
-            web_app=WebAppInfo(url=content_url)
+            callback_data=f"content_projects:{current_page}:{items[0]['id']}"
         )
     )
     return builder.as_markup()
