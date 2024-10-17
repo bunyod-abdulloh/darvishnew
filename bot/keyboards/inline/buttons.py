@@ -1,4 +1,5 @@
 from aiogram.types import InlineKeyboardMarkup, InlineKeyboardButton
+from aiogram.types.web_app_info import WebAppInfo
 from aiogram.utils.keyboard import InlineKeyboardBuilder
 
 inline_keyboard = [[
@@ -150,7 +151,7 @@ def interviews_first_ibuttons(items, current_page, all_pages, selected):
     builder.row(
         InlineKeyboardButton(
             text="📖 Mundarija",
-            callback_data=f"content_projects:{current_page}:{items[0]['category']}"
+            web_app=WebAppInfo(url="https://telegra.ph/Hidaya-korsatuvi-10-17")
         )
     )
     return builder.as_markup()

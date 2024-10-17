@@ -1,5 +1,6 @@
 import aiogram.exceptions
 from aiogram import Router, F, types
+
 from bot.handlers.functions.functions_one import extracter
 from bot.keyboards.inline.buttons import interviews_first_ibuttons
 from loader import db
@@ -58,25 +59,6 @@ async def interviews_projects_hr_projects(call: types.CallbackQuery):
         await call.message.answer_video(
             video=items[0]['file_id'], caption=f"{items[0]['caption']}", reply_markup=markup
         )
-
-
-@router.callback_query(F.data.startswith("content_projects:"))
-async def projects_two_one(call: types.CallbackQuery):
-    current_page = int(call.data.split(':')[1])
-    category = call.data.split(':')[2]
-    get_category = await db.select_project_by_categories(
-        category_name=category
-    )
-    extract = extracter(all_medias=get_category, delimiter=5)
-    items = extract[current_page - 1]
-
-    content = str()
-    for item in items:
-        content += f"{item['subcategory']}\n"
-
-    await call.answer(
-        text=content, show_alert=True
-    )
 
 
 @router.callback_query(F.data.startswith("prev_pts"))
