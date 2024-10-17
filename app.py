@@ -42,7 +42,6 @@ async def database_connected():
     # Ma'lumotlar bazasini yaratamiz:
     await db.create()
     await db.create_table_users()
-    await db.create_table_tables()
     await db.create_table_projects()
     await db.create_table_testlaryaxin()
     await db.create_table_yaxinscales()
