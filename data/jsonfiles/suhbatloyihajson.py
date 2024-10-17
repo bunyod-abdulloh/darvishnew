@@ -19,14 +19,17 @@ suhbats = [
      "caption": "HIDAYA MED CLINIC жамоасидан!\n#Oвозли_суҳбат💯\nГавҳар Дарвишовна иштирокидаги \"РУХИЙ САЛОМАТЛИК\" "
                 "мавзусида сухбат.\n13.10.2022 й",
      "link": "null"},
-    {"id": 9, "sequence": 1, "file_id": "CQACAgIAAxkBAAKbPmbFHjZYj2kwA5YCaFza0KYeDqxyAAJRRQACM5dJSFa7Zwj67dcWNQQ",
+    {"id": 9, "sequence": 1,
+     "file_id": "CQACAgIAAxkBAAKbPmbFHjZYj2kwA5YCaFza0KYeDqxyAAJRRQACM5dJSFa7Zwj67dcWNQQ",
      "file_type": "audio", "category": "\"IQ - ILM QIDIRUVCHILAR\"", "subcategory": "1 - son | Baxtiyor Sheraliyev",
      "caption": "“IQ - ILM QIDIRUVCHILAR”, 1-soni. 💥Spiker -  biolog, ixtiolog, PhD Baxtiyor Sheraliyev.📍Xitoydagi "
                 "universitetda biologiya fanlari doktori ilmiy darajasini olgan, hozirda Fargʻona davlat "
                 "universitetida kafedra mudiri va @hujayrauz kanali asoschisidir. ♦️ Mavzu: “Psixogenetika: ta’rifi, "
                 "mohiyati, oqibatlari”.",
      "link": "null"},
-    {"id": 5, "sequence": 1, "file_id": "BAACAgIAAxkBAAKUvmbEsFiuWaUhrkVKpqW3icy6jIiGAALROwACvk-ASa1EVohCeE9GNQQ",
+    {"id": 5,
+     "sequence": 1,
+     "file_id": "BAACAgIAAxkBAAKUvmbEsFiuWaUhrkVKpqW3icy6jIiGAALROwACvk-ASa1EVohCeE9GNQQ",
      "file_type": "video", "category": "Vebinarlar", "subcategory": "Bepul vebinar",
      "caption": "🥰Dr. Gavhar Darvishdan!🥰BEPUL VEBINAR💯🥰 Dr. Gavhar Darvishdan “RUHIY SALOMATLIK SARI” BEPUL "
                 "MARAFONI doirasida “RUHIY SALOMATMISIZ?” mavzusida vebinar. nnMarafonning 1-kuni: 18.10.2023 y",
@@ -319,19 +322,25 @@ suhbats = [
      "link": "null"},
     {"id": 52, "sequence": 11, "file_id": "BAACAgIAAxkBAAKhKGbF97nhpJhOqygCxv6WM-UrS0TQAAKsHwAD3PhLD1Af-Et-oq81BA",
      "file_type": "video", "category": "\"Hidaya\" ko`rsatuvi", "subcategory": "11 - son",
-     "caption": "Болаларда ақлий заифликнинг белгилари | Др. Гавҳар Дарвишnn\"ҲИДАЯ\" кўрсатуви 11-сонnnПсихотерапевт Др. Гавҳар Дарвиш билан.",
+     "caption": "Болаларда ақлий заифликнинг белгилари | Др. Гавҳар Дарвишnn\"ҲИДАЯ\" кўрсатуви 11-сонnnПсихотерапевт "
+                "Др. Гавҳар Дарвиш билан.",
      "link": "null"},
     {"id": 66, "sequence": 26, "file_id": "BAACAgIAAxkBAAKhRWbF-BhfNcmxF1I7PSh2jjpXYFFTAALQJgACnb-hSHlm_O9o2Na9NQQ",
      "file_type": "video", "category": "\"Hidaya\" ko`rsatuvi", "subcategory": "26 - son",
-     "caption": "Алкоголизм наслдан наслга ўтадими? | Др. Гавҳар Дарвишnn“ҲИДАЯ” кўрсатуви 26-сонnnПсихотерапевт Др. Гавҳар Дарвиш билан.nnhttps://youtu.be/T2vWw-C39dI",
+     "caption": "Алкоголизм наслдан наслга ўтадими? | Др. Гавҳар Дарвишnn“ҲИДАЯ” кўрсатуви 26-сонnnПсихотерапевт Др. "
+                "Гавҳар Дарвиш билан.nnhttps://youtu.be/T2vWw-C39dI",
      "link": "null"},
     {"id": 71, "sequence": 31, "file_id": "BAACAgIAAxkBAAKhSmbF-BjxTKK0eBiArQ_oVnHlcW_aAAKSLAACjB7ASxGSTjTyhOWMNQQ",
      "file_type": "video", "category": "\"Hidaya\" ko`rsatuvi", "subcategory": "31 - son",
-     "caption": "Давомий руҳий чарчоқ оқибатлари | Др. Гавҳар Дарвишnn“ҲИДАЯ” кўрсатуви 31-сонnnПсихотерапевт Др. Гавҳар Дарвиш билан.nnhttps://youtu.be/cqwVFF2U0c4",
+     "caption": "Давомий руҳий чарчоқ оқибатлари | Др. Гавҳар Дарвишnn“ҲИДАЯ” кўрсатуви 31-сонnnПсихотерапевт Др. "
+                "Гавҳар Дарвиш билан.nnhttps://youtu.be/cqwVFF2U0c4",
      "link": "null"},
     {"id": 81, "sequence": 1, "file_id": "BAACAgIAAxkBAAKrqWbJGVs5kJ3HVn_Clu0dp_cz1oyeAAKiWwACLNFASjivE8VaBXCCNQQ",
      "file_type": "video", "category": "Ko`rsatuvlar", "subcategory": "Ilmiy suhbat",
-     "caption": "15 yoshda tabletka, qaysi psixotiplarga din o'rgatish zarur...nnPsixoterapevt hamda narkolog Doktor Gavhar Darvish bilan suhbat. nnKo'rsatuvda nima uchun yoshlarimiz  narkotik tabletkalar qabul qilishlari va psixotiplar haqida to'liq ma'lumotlar olishingiz mumkin.nnhttps://youtu.be/nyxwK9BLsmE?si=MveFdz1vKpr7Zape",
+     "caption": "15 yoshda tabletka, qaysi psixotiplarga din o'rgatish zarur...nnPsixoterapevt hamda narkolog Doktor "
+                "Gavhar Darvish bilan suhbat. nnKo'rsatuvda nima uchun yoshlarimiz  narkotik tabletkalar qabul "
+                "qilishlari va psixotiplar haqida to'liq ma'lumotlar olishingiz "
+                "mumkin.nnhttps://youtu.be/nyxwK9BLsmE?si=MveFdz1vKpr7Zape",
      "link": "null"},
     {"id": 83, "sequence": 3, "file_id": "CQACAgIAAxkBAAKrzmbJJE1M9IQ3PyTr35N6lIb030jkAAJ3TwACp8L4SGclrwABt04tjjUE",
      "file_type": "audio", "category": "Ovozli suhbatlar", "subcategory": "Ovozli suhbat",
