@@ -116,7 +116,7 @@ def key_returner_projects(items, current_page, all_pages):
     return keys.as_markup()
 
 
-def interviews_first_ibuttons(items, current_page, all_pages, selected):
+def interviews_first_ibuttons(items, current_page, all_pages, selected, content_url=None):
     builder = InlineKeyboardBuilder()
     for item in items:
         if selected == item['sequence']:
@@ -151,21 +151,7 @@ def interviews_first_ibuttons(items, current_page, all_pages, selected):
     builder.row(
         InlineKeyboardButton(
             text="📖 Mundarija",
-            web_app=WebAppInfo(url="https://telegra.ph/Hidaya-korsatuvi-10-17")
+            web_app=WebAppInfo(url=content_url)
         )
     )
     return builder.as_markup()
-
-# async def tables_menu(callback_text):
-#     all_tables = await db.select_all_tables()
-#
-#     builder = keyboard.InlineKeyboardBuilder()
-#
-#     for table in all_tables:
-#         builder.add(
-#             InlineKeyboardButton(
-#                 text=f"{table['table_name']}", callback_data=f"{callback_text}_{table['id']}"
-#             )
-#         )
-#     builder.adjust(1)
-#     return builder.as_markup()

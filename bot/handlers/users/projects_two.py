@@ -47,7 +47,8 @@ async def interviews_projects_hr_projects(call: types.CallbackQuery):
     items = extract[current_page - 1]
 
     markup = interviews_first_ibuttons(
-        items=items, current_page=current_page, all_pages=all_pages, selected=1
+        items=items, current_page=current_page, all_pages=all_pages, selected=1,
+        content_url="https://telegra.ph/Hidaya-korsatuvi-10-17"
     )
 
     await call.message.delete()
@@ -91,7 +92,8 @@ async def projects_two_prev(call: types.CallbackQuery):
     items = extract[current_page - 1]
 
     markup = interviews_first_ibuttons(
-        items=items, current_page=current_page, all_pages=all_pages, selected=items[-1]['sequence']
+        items=items, current_page=current_page, all_pages=all_pages, selected=items[-1]['sequence'],
+        content_url="https://telegra.ph/Hidaya-korsatuvi-10-17"
     )
 
     try:
@@ -124,7 +126,8 @@ async def projects_two_two(call: types.CallbackQuery):
     items = extract[current_page - 1]
 
     markup = interviews_first_ibuttons(
-        items=items, current_page=current_page, all_pages=len(extract), selected=get_data['sequence']
+        items=items, current_page=current_page, all_pages=len(extract), selected=get_data['sequence'],
+        content_url="https://telegra.ph/Hidaya-korsatuvi-10-17"
     )
     media = get_data['file_id']
     caption = f"{get_data['caption']}"
@@ -184,7 +187,8 @@ async def projects_two_next(call: types.CallbackQuery):
     items = extract[current_page - 1]
 
     markup = interviews_first_ibuttons(
-        items=items, current_page=current_page, all_pages=all_pages, selected=items[0]['sequence']
+        items=items, current_page=current_page, all_pages=all_pages, selected=items[0]['sequence'],
+        content_url="https://telegra.ph/Hidaya-korsatuvi-10-17"
     )
 
     try:
