@@ -87,21 +87,26 @@ async def interviews_projects_hr_next(call: types.CallbackQuery):
     await call.answer(
         cache_time=0
     )
-    current_page = int(call.data.split(':')[1])
-    all_pages = int(call.data.split(':')[2])
+    try:
+        current_page = int(call.data.split(':')[1])
+        all_pages = int(call.data.split(':')[2])
 
-    if current_page == all_pages:
-        current_page = 1
-    else:
-        current_page += 1
+        if current_page == all_pages:
+            current_page = 1
+        else:
+            current_page += 1
 
-    all_projects = await db.select_projects()
-    extract = extracter(
-        all_medias=all_projects, delimiter=10
-    )
-    await prev_next_projects_func(
-        extract=extract, call=call, current_page=current_page, all_pages=all_pages
-    )
+        all_projects = await db.select_projects()
+        extract = extracter(
+            all_medias=all_projects, delimiter=10
+        )
+        await prev_next_projects_func(
+            extract=extract, call=call, current_page=current_page, all_pages=all_pages
+        )
+    except IndexError:
+        await call.answer(
+            text="Boshqa sahifa mavjud emas!", show_alert=True
+        )
 
 
 @interviews_projects.message(F.text == "⬅️ Ortga")
