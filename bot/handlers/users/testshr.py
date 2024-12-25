@@ -1,6 +1,7 @@
 import os
 
 import aiogram
+import asyncpg
 from aiogram import Router, F, types
 from aiogram.fsm.context import FSMContext
 
@@ -34,14 +35,24 @@ async def tests_main_hr(message: types.Message, state: FSMContext):
 
 @test.message(UserAnketa.addfullname)
 async def addfullname(message: types.Message, state: FSMContext):
-    await db.updateuser_fullname(
-        telegram_id=message.from_user.id, fio=message.text
-    )
-    await message.answer(
-        text="Телефон рақамингизни киритинг:\n\n"
-             "<b>(Намуна: +998991234567)</b>"
-    )
-    await state.set_state(UserAnketa.addphone)
+    try:
+        await db.updateuser_fullname(
+            telegram_id=message.from_user.id, fio=message.text
+        )
+        await message.answer(
+            text="Телефон рақамингизни киритинг:\n\n"
+                 "<b>(Намуна: +998991234567)</b>"
+        )
+        await state.set_state(UserAnketa.addphone)
+    except asyncpg.exceptions.PostgresSyntaxError:
+        if "'" in message.text:
+            full_name = message.text.replace("'", "`")
+            await db.updateuser_fullname(telegram_id=message.from_user.id, fio=full_name)
+    else:
+        await message.answer(
+            text="Киритилган матнда хатолик мавжуд! Илтимос, фамилия, исм ва отангизни исмини ортиқча белгиларсиз "
+                 "киритинг! "
+        )
 
 
 @test.message(UserAnketa.addphone)
